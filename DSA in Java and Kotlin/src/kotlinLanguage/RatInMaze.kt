@@ -13,12 +13,10 @@ fun main() {
 
     val mazeRoute = findPath(m, m.size)
 
-    println(mazeRoute)
+    println("Maze Size  ${mazeRoute.size}")
     mazeRoute.forEach {
-        print("$it ")
+        print("$it -> ")
     }
-
-
 }
 
 
@@ -32,76 +30,102 @@ fun findPath(m: Array<IntArray>, n: Int): Stack<String> {
 
     if (m[srcX][srcY] == 0) return result
 
-    var path = Stack<String>()
+    val path = Stack<String>()
+    val visited = arrayListOf(
+        arrayListOf(false, false, false, false),
+        arrayListOf(false, false, false, false),
+        arrayListOf(false, false, false, false),
+        arrayListOf(false, false, false, false),
+    )
 
-    val visited = Stack<Stack<Boolean>>()
-
-    val singleStack = Stack<Boolean>()
-
-    for (i in 0..<n) singleStack.push(false)
-
-    singleStack.forEach { _ -> visited.push(singleStack) }
+    visited.forEach {
+        it.forEach { print("$it ") }
+        println()
+    }
+    println()
 
     checkPath(m, n, srcX, srcY, path, visited, result)
     result.sorted()
+
+    println()
+    visited.forEach {
+        it.forEach { print("$it ") }
+        println()
+    }
 
     return result
 }
 
 fun checkPath(
     m: Array<IntArray>, n: Int, srcX: Int, srcY: Int, path: Stack<String>,
-    visited: Stack<Stack<Boolean>>, result: Stack<String>
+    visited: ArrayList<ArrayList<Boolean>>, result: Stack<String>
 ) {
-    //todo; base case
+    //todo: base case
     if (srcX == n - 1 && srcY == n - 1) {
-        result.push(path.first())
+        path.forEach { print(" $it ==>") }
+        visited.forEach { it.fill(true) }
+        result.addAll(path)
         return
     }
 
     visited[srcX][srcY] = true
+    print("result - ")
+    result.forEach { print("$it ") }
+    println()
+    println("Sorce ($srcX , $srcY )")
+    println()
 
     //todo: ->  move the rat -> Down (x + 1, y)
     if (isSafe(m, n, srcX + 1, srcY, visited)) {
+        println("Move - D")
         path.push("D")
         checkPath(m, n, srcX + 1, srcY, path, visited, result)
-        path.pop()
+        path.clear()
     }
 
     //todo: ->   move the rat -> Left (x, y - 1)
     if (isSafe(m, n, srcX, srcY - 1, visited)) {
+        println("Move - L")
         path.push("L")
         checkPath(m, n, srcX, srcY - 1, path, visited, result)
-        path.pop()
+        path.clear()
     }
 
     //todo: ->   move the rat -> Right (x, y + 1)
     if (isSafe(m, n, srcX, srcY + 1, visited)) {
+        println("Move - R")
         path.push("R")
         checkPath(m, n, srcX, srcY + 1, path, visited, result)
-        path.pop()
+        path.clear()
     }
 
     //todo: ->   move the rat -> Up (x - 1, y)
     if (isSafe(m, n, srcX - 1, srcY, visited)) {
-        path.push("D")
+        println("Move - U")
+        path.push("U")
         checkPath(m, n, srcX - 1, srcY, path, visited, result)
-        path.pop()
+        path.clear()
     }
 
+    result.forEach { print("  Result Bottom -->  $it") }
+    println()
     visited[srcX][srcY] = false
 }
 
-fun isSafe(m: Array<IntArray>, n: Int, srcX: Int, srcY: Int, visited: Stack<Stack<Boolean>>): Boolean {
+fun isSafe(m: Array<IntArray>, n: Int, srcX: Int, srcY: Int, visited: ArrayList<ArrayList<Boolean>>): Boolean {
     //todo: =>  check that x & y points not out of bound
+    println("Inside IsSafe : Sorce  ($srcX , $srcY)")
     if (srcX >= 0 && srcY >= 0 && srcX < n && srcY < n) {
 
         //todo: =>  main array index value is not zero means place not blocked for travel
         // visited check visited index is false that means you never come here before
+        println("Inside IsSafe : mIndex = ${m[srcX][srcY]} & isVisited = ${visited[srcX][srcY]}")
+
         if (m[srcX][srcY] == 1 && !visited[srcX][srcY]) {
             return true
         }
     }
 
-
+    println()
     return false
 }
