@@ -1,10 +1,4 @@
-    // for (int i = 0; i < 4; i++)
-    // {
-    //     for (int j = 0; j < 4; j++)
-    //     {
-    //         cout << m[i][j];
-    //         cout << "  ";
-    //     }
-    //     cout << endl
-    //          << endl;
-    // }
+0});
+    // m.push_back({1, 1, 0, 1});
+    // m.push_back({1, 1, 0, 0});
+    // m.push_back({0, 1, 1, 1});

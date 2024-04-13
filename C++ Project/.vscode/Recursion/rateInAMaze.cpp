@@ -19,6 +19,10 @@ void solve(vector<vector<int> > &m, int n, vector<string> &ans, int sorceX, int 
     if (sorceX == n - 1 && sorceY == n - 1)
     {
         ans.push_back(path);
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                visited[i][j] = 0;   
+        
         return;
     }
 
@@ -70,10 +74,7 @@ vector<string> findPath(vector<vector<int> > &m, int n)
     int sorceX = 0, sorceY = 0;
 
     // visiting array
-    vector<vector<bool> > visited;
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            visited[i][j] = false;
+    vector<vector<bool> > visited (4, vector<bool>(4, 0));
 
     vector<string> ans;
     string path = "";
@@ -87,32 +88,24 @@ vector<string> findPath(vector<vector<int> > &m, int n)
 int main(int argc, char const *argv[])
 {
 
-    int xsa[4][4] =
-        {{1, 0, 0, 0},
-         {1, 1, 0, 1},
-         {1, 1, 0, 0},
-         {0, 1, 1, 1}};
-
     vector<vector<int> > m;
+
+        
+    m.push_back({1, 0, 0, 0});
+    m.push_back({1, 1, 0, 1});
+    m.push_back({1, 1, 0, 0});
+    m.push_back({0, 1, 1, 1});
+
+     
+    vector<string> result = findPath(m, 4);
+
+
+    // vector<vector<int> > m (4, vector<int>(4, 0));
 
     for (int i = 0; i < 4; i++)
     {
-        for (int j = 0; j < 4; j++)
-        {
-            m[i][j] = xsa[i][j];
-        }
+        cout << result[i] ;
     }
-
-    // for (int i = 0; i < 4; i++)
-    // {
-    //     for (int j = 0; j < 4; j++)
-    //     {
-    //         cout << m[i][j];
-    //         cout << "  ";
-    //     }
-    //     cout << endl
-    //          << endl;
-    // }
 
     return 0;
 }
