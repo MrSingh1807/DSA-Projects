@@ -52,5 +52,13 @@ void quickSort(int arr[], int start, int end)
 int main(int argc, char const *argv[])
 {
 
+    int arr[] = {45,12,53,89,2,7,6};
+    quickSort(arr, 0,6 );
+
+    for (int  i = 0; i < 7 ; i++)
+    {
+        cout << " " << arr[i];
+    }
+    
     return 0;
 }
