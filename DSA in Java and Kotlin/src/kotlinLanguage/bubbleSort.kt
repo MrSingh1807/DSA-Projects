@@ -3,13 +3,13 @@ package kotlinLanguage
 
 fun main() {
     val dummyList = intArrayOf(10, 4, 5, 2, 9, 4, 7, 2, 1)
-    sortArray(dummyList)
+    bubbleSort(dummyList)
 
     print("Ans ")
     dummyList.forEach { print("$it ") }
 }
 
-fun sortArray(result: IntArray) {
+fun bubbleSort(result: IntArray) {
     var isSwapped = false
 
     for (j in 0..<result.lastIndex) {
@@ -24,5 +24,5 @@ fun sortArray(result: IntArray) {
 
     //todo: base case
     if (!isSwapped) return
-    else sortArray(result)
+    else bubbleSort(result)
 }
