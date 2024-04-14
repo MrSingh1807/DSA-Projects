@@ -28,3 +28,8 @@ fun swap(nums: IntArray, startIndex: Int, endIndex: Int) {
     nums[startIndex] = nums[endIndex]
     nums[endIndex] = temp
 }
+//inline fun <reified T> swap(nums: Array<T>, startIndex: Int, endIndex: Int) {
+//    val temp = nums[startIndex]
+//    nums[startIndex] = nums[endIndex]
+//    nums[endIndex] = temp
+//}
