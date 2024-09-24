@@ -1,7 +1,7 @@
 package kotlinLanguage
 
 fun main() {
-    val nums = intArrayOf(10, 1, 7, 4, 8, 2, 11)
+    val nums = intArrayOf(0,10, 1, 7, 4, 8, 2, 11)
     insertionSort(1, nums)
 
     print("\n \n Result Arr ")
