@@ -4,8 +4,37 @@ import kotlinLanguage.queue.Queue
 import java.util.Scanner
 
 /* todo:
+*   It is the type of Tree in which each parent can have at most two children.
+*   Quick Revision -
+*       1. Tree is made up of Node & Edge
+*       2. n nodes = n-1 edges
+*       3. Degree :- No of direct children (for a node)
+*       4. Degree of a tree is the highest degree of a node among all the nodes
+*           present in the tree.
+*       5. Binary Tree: Tree of degree  <= 2 [ Node can have 0, 1 or 2 children ]
+*       .
+*   Type of Binary Tree :-
+*   1. Full or Strict Binary Tree : - All nodes have either 0 or 2 children.
+*   2. Perfect BT :-
+*       > Internal nodes have 2 children.
+*       > All leaf nodes are on same level.
+*   3. Complete BT :-
+*       > All levels are completely expect possibly the last level
+*       > Last level must have its keys as left as possible.
+*   4. Degenerated BT : Every Parent Node has exactly on child
+*   5. Skewed BT : > Left Skewed -> Every Parent has its child in left node
+*                  > Right Skewed -> Every Parent has its child in right node
 *
-*
+* todo:
+*  ex:              7
+*                  / \
+*                11    2
+*               / \    / \
+*              8   1  12  9
+*   Binary Tree Traversal :
+*   1. Pre Order :  [ Root -> Left Subtree -> Right Subtree ]  : 7 11 8 1 2 12 9
+*   2. Post Order: [ Left Subtree -> Right Subtree -> Root ]  : 8 1 11 12 9 2 7
+*   3. InOrder : [ [ Left Subtree -> Root -> Right Subtree ] : 8 11 1 7 12 2 9
 * */
 
 interface BinaryTree<T : Any> {
